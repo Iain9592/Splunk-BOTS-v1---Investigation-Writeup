@@ -1,0 +1,32 @@
+## Description
+Today is Alice's first day at the Wayne Enterprises' Security Operations Center. Lucius sits Alice down and gives her first assignment: A memo from Gotham City Police Department (GCPD). 
+Apparently GCPD has found evidence online (http://pastebin.com/Gw6dWjS9) that the website www.imreallynotbatman.com hosted on Wayne Enterprises' IP address space has been compromised. 
+The group has multiple objectives... but a key aspect of their modus operandi is to deface websites in order to embarrass their victim. 
+Lucius has asked Alice to determine if www.imreallynotbatman.com. (the personal blog of Wayne Corporations CEO) was really compromised.
+
+Question 1: What is the likely IPv4 address of someone from the Po1s0n1vy group scanning imreallynotbatman.com for web application vulnerabilities?
+Solution: 
+1. In Splunk I specified index="botsv1" sourcetype="stream:http" imreallynotbatman.com
+2. looked at Source IP field and entered in 40.80.148.42 since it had the highest count.
+
+Writeup: Still learning how to use splunk the fields are very convenient. How hard can it get!
+
+Question 2: What company created the web vulnerability scanner used by Po1s0n1vy? Type the company name.
+Answer guidance: For example "Microsoft" or "Oracle"
+Solution:
+1. simply searched up web vulnerabilty scanner and saw Acunetix Web Vulnerability Scanner to which I entered Acunetix and got it right
+
+Question 3: What content management system is imreallynotbatman.com likely using?
+Answer guidance: Please do not include punctuation such as . , ! ? in your answer. We are looking for alpha characters only.
+Solution:
+Quite literally the same as Question 2
+
+Question 4: What is the name of the file that defaced the imreallynotbatman.com website? Please submit only the name of the file with extension?
+Answer guidance: For example "notepad.exe" or "favicon.ico"
+Solution: 
+1. Find the webserver through destination ip when filtering imreallynotbatman.com since that is where we send requests to.
+2. We then use the destination ip we just found of 192.168.250.70 as the source ip and remove the imreallynotbatman.com filter and specify GET to see which file was downloaded. 
+3. We see that poisonivy-is-coming-for-you-batman.jpeg is the file downloaded through a quick search which lets us complete the level.
+
+Writeup: This was really hard for me. I needed a hint and the destination ip and source ip switching weren't obvious nor intuitive to me. But still fun to tinker with searching.
+Needed sometime to understand the meaning of deface and filter what I was looking for.
