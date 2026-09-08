@@ -30,3 +30,28 @@ Solution:
 
 Writeup: This was really hard for me. I needed a hint and the destination ip and source ip switching weren't obvious nor intuitive to me. But still fun to tinker with searching.
 Needed sometime to understand the meaning of deface and filter what I was looking for.
+
+Question 5: This attack used dynamic DNS to resolve to the malicious IP. What fully qualified domain name (FQDN) is associated with this attack?
+Solution:
+1. inputting the previous jpeg used for the attack poisonivy-is-coming-for-you-batman.jpeg. We are able to filter through the site field where we find the malicious FQDN right there
+
+Writeup: Very unintuitive in my opinion but it is cool that we use old answers to create and find new answers.
+
+Question 6: What IPv4 address has Po1s0n1vy tied to domains that are pre-staged to attack Wayne Enterprises?
+Solution: 
+1. A bit of Guess and check but essentially used the domain we got in question 5 as a starting point and cross referenced what unfamiliar ip addressed was being used. 
+2. We can see that the ip address 23.22.63.114 is interacting the web server so we can see that it is trying to affect wayne enterprise.
+
+Question 8?: What IPv4 address is likely attempting a brute force password attack against imreallynotbatman.com?
+1. put in imreallynotbatman.com into query then specify "passwd=" into the query to filter passwords being sent 
+2. We can see a single ip address sending an overwhelming amount of requests to imreallynotbatman seemingly enacting a brute forcing
+3. look into the src_ip field to see which one it is.
+
+Question 9: What is the name of the executable uploaded by Po1s0n1vy?
+Answer guidance: Please include file extension. (For example, "notepad.exe" or "favicon.ico")
+Solution:
+1. we use the malicious ip address in the first question as the source address because that is the request that will be sent
+2. because it is an executable we can filter by .exe
+3. 3791.exe has a header "file is infected" hinting that it is the threat actor.
+
+Question 10: What is the MD5 hash of the executable uploaded?
