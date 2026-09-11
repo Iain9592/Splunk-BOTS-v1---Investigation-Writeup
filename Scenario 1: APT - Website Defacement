@@ -55,3 +55,15 @@ Solution:
 3. 3791.exe has a header "file is infected" hinting that it is the threat actor.
 
 Question 10: What is the MD5 hash of the executable uploaded?
+Solution:
+1. Simply look at the malicious executable by Po1s0n1vy and take the analyticticksum field
+2. put the hash into virustotal which sends us to a malware is very dangerous. 
+3. Looking into details we can find its md5 hash.
+
+Question 11: GCPD reported that common TTPs (Tactics, Techniques, Procedures) for the Po1s0n1vy APT group, 
+if initial compromise fails, is to send a spear phishing email with custom malware attached to their intended target. 
+This malware is usually connected to Po1s0n1vys initial attack infrastructure. Using research techniques, provide the SHA256 hash of this malware.
+Solution:
+1. Examine the Malicious ip we examine earllier 23.22.63.114 in virustotal
+2. Go to relations to it and there we can find MirandaTateScreensaver.scr.exe which is an oddly specific name and a reference to the dark knight
+3. Using that familiar naming convention as a clue we can look at the sha-256 hash to give us our answer.
