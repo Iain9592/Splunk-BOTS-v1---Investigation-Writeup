@@ -67,3 +67,26 @@ Solution:
 1. Examine the Malicious ip we examine earllier 23.22.63.114 in virustotal
 2. Go to relations to it and there we can find MirandaTateScreensaver.scr.exe which is an oddly specific name and a reference to the dark knight
 3. Using that familiar naming convention as a clue we can look at the sha-256 hash to give us our answer.
+
+Question 12: What special hex code is associated with the customized malware discussed in question 111?
+Answer guidance: It's not in Splunk!!
+Solution:
+1. Go to virustotal for the same malware
+2. go to community tab that has comments
+3. at the bottom there is a hex code that is associated with the malware by an anonymous commenter.
+
+Question 14: What was the first brute force password used?
+Solution:
+1. Query Imreallynotbatman since that is where the passwords are being attempted and query "passwd=" since that is the field in the url that inputs the password
+2. filter to the earliest log of this being done and we notice "12345678" as the earliest attempt which looks like a brute force attempt.
+
+Question 15: One of the passwords in the brute force attack is James Brodsky's favorite Coldplay song. We are looking for a six character word on this one. Which is it?
+Solution:
+1. Search up coldplay songs that are 6 letters long and we get Yellow, Shiver, and Clocks
+2. trying yellow first we do the exact same thing as in question 14 but instead we do "passwd=Yellow" and we see 1 attempt has been made by the same ip address as the brute forcers.
+
+Question 16: What was the correct password for admin access to the content management system running "imreallynotbatman.com"?
+Solution:
+1. We know from earlier that the content management system is Joomlah. and we can query admin as well
+2. we then see which passwords are being used and which ones are being kept alive.
+3. we can see that one particular password has the keep-alive connection and its the admin login with the password entry "batman"
