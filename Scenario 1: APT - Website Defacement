@@ -90,3 +90,30 @@ Solution:
 1. We know from earlier that the content management system is Joomlah. and we can query admin as well
 2. we then see which passwords are being used and which ones are being kept alive.
 3. we can see that one particular password has the keep-alive connection and its the admin login with the password entry "batman"
+
+Question 17: What was the average password length used in the password brute forcing attempt?
+Answer guidance: Round to closest whole integer. For example "5" not "5.23213"
+Notes:
+rex: used to extract fields using regex
+- in "passwd=(?<pass>\w+)". () opens up capture group, ? makes it a special group so we can name it and use the values later, 
+<pass> is to name the capture group, \w specifies alphanumeric characters, + is more than 1
+- eval length=len(pass) we name length a variable that takes the len of each pass 
+- stats avg(length) as average this takes the average of the length of passwords
+Solution:
+1. we query imreallynotbatman.com "passwd=" | rex field=form_data "passwd=(?<pass>\w+)" | eval length=len(pass) | stats avg(length) as average
+2. we get our average of 6.174334140435835 which rounds to 6
+
+Question 18:How many seconds elapsed between the time the brute force password scan identified the correct password and the compromised login?
+Answer guidance: Round to 2 decimal places.
+Hint: You'll note from previous answers that one of the passwords was attempted twice. You need to calculate the duration of time between those two attempts.
+Notes:
+- transaction pass takes all the pass that we specify and stuffs them into one group.
+- table duration makes a table of all our passwords that we have grouped together among all the attempts 
+Solution:
+1. We only know one password login that was right was batman and we see that batman was attempted twice.
+2. by using "passwd=batman" | rex field=form_data "passwd=(?<pass>\w+)" | transaction pass | table duration which shows us the duration between attempts
+
+Question 19: How many unique passwords were attempted in the brute force attempt?
+Solution:
+1. same thing as last time but add imreallynotbatman.com "passwd=" | rex field=form_data "passwd=(?<pass>\w+)" | transaction pass | stats count 
+1.5 This lets us group duplicates and count them which gives us 142
